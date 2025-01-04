@@ -1,0 +1,367 @@
+:root {
+    --titleBarHeight: 40px;
+    --titleBarSearchBoxHeight: calc(var(--titleBarHeight) * 0.75);
+    --titleBarSearchButtonSize: calc(var(--titleBarHeight)*0.7);
+}
+* {
+    transition: all .3s;
+}
+.body {
+    /* background-color: rgba(0, 255, 213, 0.6); */
+    /* background-color: rgba(255,255,255,1); */
+    background-color: #FAF8F7;
+    border-radius: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+/* 按钮样式 */
+button {
+    padding: 5px 10px;
+    background-color: #F8F5F3;
+    color: #614C39;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    transition: all .3s;
+}
+svg {
+    transition: all .3s;
+}
+svg:hover, button:hover {
+    background-color: #E8E2DE;
+    border-radius: 100%;
+    transition: all .3s;
+}
+
+/* 标题栏 */
+#titleBar {
+    top: 0;
+    left: 0;
+    /* width: 100% - 1px; */
+    width: 100%;
+    height: var(--titleBarHeight);
+    background-color: #f0f0f000;
+    /* border: 1px solid rgba(72, 71, 71, 0.5); */
+    border-bottom: 1px solid rgba(72, 71, 71, 0.5);
+    border-radius: 0;
+    /* border-radius: 10px 10px 0 0; */
+    display: flex;
+    padding: 0%;
+    margin: 0%;
+    -webkit-app-region: drag;
+    user-select: none;
+}
+
+#title {
+    float: left;
+    margin-left: 10px;
+    display: inline-flex;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    -webkit-app-region: drag;
+    user-select: none;
+    font-weight: bolder;
+    color: #614C39;
+    font-size: larger;
+}
+
+#titleBarContent {
+    display: flex;
+    /* border: 1px solid rgba(72, 71, 71, 0.5); border-radius: 7px; */
+    -webkit-app-region: drag;
+    user-select: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+}
+
+#titleBarButtons {
+    float: right;
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-app-region: drag;
+    user-select: none;
+}
+#titleBarButtons *{
+    color: #EF896D;
+    margin: 3px;
+    border-radius: 100%;
+    transition: all .3s;
+}
+#titleBarButtons :hover {
+    background-color: #E8E2DE;
+    border-radius: 100%;
+    transition: all .3s;
+}
+
+.inputBox {
+    -webkit-app-region: drag;
+    padding-left: 25%;
+}
+
+.inputBox input {
+    -webkit-app-region: no-drag;
+    float: right;
+    width: 100%;
+    height: var(--titleBarSearchBoxHeight);
+    padding-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: calc(var(--titleBarSearchButtonSize) + 10px);
+    border-radius: var(--titleBarHeight);
+    /* border: 2px solid #324B4E; */
+    border: none;
+    outline: none;
+    /* background: #F9F0DA; */
+    background-color: #F8EFEB;
+    color: #959595;
+    transition: .3s linear;
+}
+.inputBox input::placeholder {
+    color: #CCBFB6;
+}
+.inputBox input:focus {
+    width: 125%;
+    background-color: #F8E8E2;
+    color: #5c5c5c;
+    transition: .3s linear;
+}
+.inputBox input:focus::placeholder {
+    color: #C1B1B6;
+}
+
+.inputBox button {
+    position: absolute;
+    /* float: right; */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    height: var(--titleBarSearchButtonSize);
+    width: var(--titleBarSearchButtonSize);
+    top: calc((var(--titleBarSearchBoxHeight) - var(--titleBarSearchButtonSize)) / 2 + 2px);
+    right: 5px;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    transition: all .3s;
+}
+
+.inputBox button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    color: #324b4e;
+    font-size: calc(var(--titleBarSearchButtonSize)*0.4);
+}
+
+.inputBox button:hover {
+    background-color: rgba(169, 169, 169, 0.4);
+    transition: all .3s;
+}
+
+.inputBox form {
+    position: relative;
+    margin: 0 auto;
+}
+
+.leftMen,#leftMainMenu {
+    position: absolute;
+    display: flex;
+    left: 0;
+    top: 0;
+    bottom: 0px;
+    width: 150px;
+    background-color: #F9F5F3;
+    /* background-color: #324b4e; */
+    border-radius: 0px 0px 0px 0px;
+    outline: none;
+    z-index: -1;
+}
+#leftMainMenu {
+    padding: 5px;
+    padding-top: calc(var(--titleBarHeight) - 3 * 5px);
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    transition: all .3s;
+}
+#leftMainMenu ul {
+    list-style: none;
+    padding: 5px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 10px);
+    transition: all .3s;
+}
+#leftMainMenu ul li {
+    padding: 5px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    height: var(--titleBarSearchBoxHeight);
+    border-radius: var(--titleBarSearchBoxHeight);
+    user-select: none;
+    cursor: pointer;
+    transition: all .3s;
+}
+#leftMainMenu ul li:hover {
+    background-color: #F0ECE9;
+    transition: all .3s;
+}
+#leftMainMenu ul li.active {
+    background-color: #EFE0DB;
+    transition: all .3s;
+}
+
+#floatBottomBar {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: #F9EEEA;
+    /* background-color: #324b4e; */
+    border: none;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    height: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    z-index: 9999;
+}
+
+#floatBottomBar-music-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#floatBottomBar-music-info {
+    display: flex;
+    justify-content: left;
+    align-items: normal;
+    flex-direction: column;
+    padding: 5px;
+}
+#floatBottomBar-music-info #floatBottomBar-music-name, #floatBottomBar-music-info #floatBottomBar-music-artist {
+    color: #614C39;
+    text-align: left;
+    margin: 0px;
+    padding: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#floatBottomBar-music-info #floatBottomBar-music-name {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+#floatBottomBar-music-info #floatBottomBar-music-artist {
+    font-size: 0.8em;
+    font-weight: normal;
+}
+
+#floatBottomBar-music-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#floatBottomBar-music-control #floatBottomBar-music-control-play {
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+    cursor: pointer;
+    color: #EF896D;
+    transition: all .3s;
+}
+#floatBottomBar-music-control #floatBottomBar-music-control-prev, #floatBottomBar-music-control #floatBottomBar-music-control-next {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    color: #EF896D;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+#floatBottomBar-music-control #floatBottomBar-music-control-prev:hover, #floatBottomBar-music-control #floatBottomBar-music-control-next:hover {
+    color: #EF896D;
+    background-color: #E8E2DE;
+    transition: all .3s;
+}
+
+#floatBottomBar-music-buttonBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding-left: 5px;
+    transition: all .3s;
+}
+#floatBottomBar-music-buttonBox div {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s;
+    border-radius: 100%;
+}
+#floatBottomBar-music-buttonBox div:hover {
+    background-color: #E8E2DE;
+    transition: all .3s;
+}
+#floatBottomBar-music-buttonBox div svg {
+    width: 100%;
+    height: 100%;
+    color: #EF896D;
+    background-color: #f0f0f000;
+}
+#floatBottomBar-music-buttonBox #floatBottomBar-music-like svg, #floatBottomBar-music-buttonBox #floatBottomBar-music-volume svg, 
+#floatBottomBar-music-buttonBox #floatBottomBar-music-list svg
+{
+    width: 70%;
+    height: 70%;
+}
+#floatBottomBar-music-buttonBox #floatBottomBar-music-download svg, #floatBottomBar-music-buttonBox #floatBottomBar-music-more svg {
+    width: 60%;
+    height: 60%;
+}
+
+#floatBottomBar-music-progress #floatBottomBar-music-progressBar #floatBottomBar-music-progressBar-inner {
+    background-color: #EF896D;
+}
+#floatBottomBar-music-progress #floatBottomBar-music-progressTime {
+    color: rgba(166, 180, 171, 0.8);
+    font-size: 0.7em;
+}
