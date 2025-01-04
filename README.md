@@ -1,2 +1,2 @@
 # 仿照这个网易云主题制作的使用electron的dpMusic
-![ae240dcecd414ec068e080f0ac801421](https://github.com/user-attachments/assets/ae9fee66-0b2f-42c0-a539-e49b6475cf44)
+![image](https://github.com/user-attachments/assets/40ae5cbd-81d5-41e0-975b-bc2672e2c9be)
