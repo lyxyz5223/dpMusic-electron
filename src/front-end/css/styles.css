@@ -2,6 +2,8 @@
     --titleBarHeight: 40px;
     --titleBarSearchBoxHeight: calc(var(--titleBarHeight) * 0.75);
     --titleBarSearchButtonSize: calc(var(--titleBarHeight)*0.7);
+    --leftMainMenuWidth: 150px;
+    --roundSize: 15px;
 }
 * {
     transition: all .3s;
@@ -58,6 +60,7 @@ svg:hover, button:hover {
     padding: 0%;
     margin: 0%;
     -webkit-app-region: drag;
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -69,6 +72,7 @@ svg:hover, button:hover {
     align-items: center;
     justify-content: center;
     -webkit-app-region: drag;
+    -webkit-user-select: none;
     user-select: none;
     font-weight: bolder;
     color: #614C39;
@@ -79,6 +83,7 @@ svg:hover, button:hover {
     display: flex;
     /* border: 1px solid rgba(72, 71, 71, 0.5); border-radius: 7px; */
     -webkit-app-region: drag;
+    -webkit-user-select: none;
     user-select: none;
     justify-content: center;
     align-items: center;
@@ -93,6 +98,7 @@ svg:hover, button:hover {
     align-items: center;
     justify-content: center;
     -webkit-app-region: drag;
+    -webkit-user-select: none;
     user-select: none;
 }
 #titleBarButtons *{
@@ -178,13 +184,13 @@ svg:hover, button:hover {
     margin: 0 auto;
 }
 
-.leftMen,#leftMainMenu {
+.leftMenu,#leftMainMenu {
     position: absolute;
     display: flex;
     left: 0;
     top: 0;
     bottom: 0px;
-    width: 150px;
+    width: var(--leftMainMenuWidth);
     background-color: #F9F5F3;
     /* background-color: #324b4e; */
     border-radius: 0px 0px 0px 0px;
@@ -219,6 +225,7 @@ svg:hover, button:hover {
     width: 100%;
     height: var(--titleBarSearchBoxHeight);
     border-radius: var(--titleBarSearchBoxHeight);
+    -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
     transition: all .3s;
@@ -365,3 +372,72 @@ svg:hover, button:hover {
     color: rgba(166, 180, 171, 0.8);
     font-size: 0.7em;
 }
+
+#mainContentsBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    background-color: #FAF8F7;
+    padding: 0px;
+    padding-left: 5px;
+    padding-top: 5px;
+    margin-left: calc(var(--leftMainMenuWidth) + 10px);/*10px是padding*/
+    margin-top: var(--topMainMenuHeight);
+    /* width: calc(100% - var(--leftMainMenuWidth)); */
+    /* height: 100%; */
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+#mainContentsBox .mainContentsBox-mainRecommendation-Container {
+    display: flex;
+}
+#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-PictureContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8E1DB;
+    --mainContentsBox-mainRecommendation-picSize: 125px;
+    width: var(--mainContentsBox-mainRecommendation-picSize);
+    height: var(--mainContentsBox-mainRecommendation-picSize);
+    border: none;
+    border-radius: var(--roundSize);
+    overflow: hidden;
+    /* padding: 5px; */
+    transition: all .3s;
+}
+#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Picture:hover {
+    opacity: 0.5;
+    transform: scale(1.2);
+    transition: all .3s;
+}
+#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Picture {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("http://p3.music.126.net/lxTiuxCCexEZolVZCWnaRQ==/109951168018764622.jpg");
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--roundSize);
+    overflow: hidden;
+}
+
+#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+

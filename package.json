@@ -6,13 +6,46 @@
   "author": "lyxyz5223",
   "license": "MIT",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "electron": "^33.2.1",
+    "react": "^19.0.0",
+    "simple-netease-cloud-music": "^0.5.2",
     "vue": "^3.5.13"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.6.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development electron src/main.js",
+    "prod": "cross-env NODE_ENV=production electron src/main.js",
+    "build-win64": "electron-builder -w --x64"
+  },
+  "build": {
+    "productName": "Harbour",
+    "appId": "harbour.electron.app",
+    "files": [
+      "build/**/*",
+      "main/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./src/assets/logo.ico",
+      "uninstallerIcon": "./src/assets/logo.ico",
+      "installerHeaderIcon": "./src/assets/logo.png",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Harbour"
+    },
+    "win": {
+      "icon": "./src/assets/logo.ico",
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "target": "nsis"
+    },
+    "electronDist": "./node_modules/electron"
   }
 }

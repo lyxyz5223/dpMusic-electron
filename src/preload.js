@@ -9,4 +9,5 @@ contextBridge.exposeInMainWorld("operator", {
     maximizeWindow: () => ipcRenderer.send("maximizeWindow"),
     minimizeWindow: () => ipcRenderer.send("minimizeWindow"),
     closeWindow: () => ipcRenderer.send("closeWindow"),
+    searchSongs: (name) => ipcRenderer.invoke("searchSongs", name),
 });

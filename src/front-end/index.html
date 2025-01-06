@@ -9,7 +9,19 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="./js/index.js"></script>
-    
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline';"> -->
+    <script src="../renderer.js"></script>
+    <style>
+        .drag {
+            -webkit-app-region: drag;
+        }
+        .no-drag {
+            -webkit-app-region: no-drag;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,29 +32,29 @@
         <div id="titleBarContent">
             <div class="inputBox">
                 <form>
-                    <input type="text" placeholder="请输入您要搜索的内容..." name="search">
-                    <button type="submit"></button>
+                    <input type="text" placeholder="请输入您要搜索的内容..." name="search" onkeydown="if(event.keyCode==13) {searchSongs();return false;}">
+                    <button title="搜索" type="button" onclick='searchSongs()'></button>
                 </form>
             </div>
         </div>
         <div id="titleBarButtons">
             <!--最小化--> 
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="window.operator.minimizeWindow();" style="-webkit-app-region: no-drag;">
+            <svg class="no-drag" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="window.operator.minimizeWindow();">
                 <path d="M2 11H20V13H4V11Z" fill="currentColor" />
             </svg>
             <!--最大化与还原-->
-            <svg id="titleBarButtonMaximize" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-app-region: no-drag;" onclick="window.operator.maximizeWindow();">
+            <svg class="no-drag" id="titleBarButtonMaximize" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="window.operator.maximizeWindow();">
                 <circle cx="12" cy="12" r="8px"></circle>
             </svg>
             <!--最大化-->
-            <!-- <svg id="titleBarButtonMaximize" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="-webkit-app-region: no-drag;" onclick="document.getElementById('titleBarButtonMaximize').style.display = 'none';document.getElementById('titleBarButtonUnmaximize').style.display = '';window.operator.maximizeWindow();">
+            <!-- <svg class="no-drag" id="titleBarButtonMaximize" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="document.getElementById('titleBarButtonMaximize').style.display = 'none';document.getElementById('titleBarButtonUnmaximize').style.display = '';window.operator.maximizeWindow();">
                 <path d="M4 4H10V6H6V10H4V4Z" fill="currentColor" />
                 <path d="M4 20H10V18H6V14H4V20Z" fill="currentColor" />
                 <path d="M14 20H20V14H18V18H14V20Z" fill="currentColor" />
                 <path d="M20 4H14V6H18V10H20V4Z" fill="currentColor" />
             </svg> -->
             <!--还原-->
-            <!-- <svg id="titleBarButtonUnmaximize" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;-webkit-app-region: no-drag;" onclick="document.getElementById('titleBarButtonMaximize').style.display = '';document.getElementById('titleBarButtonUnmaximize').style.display = 'none';window.operator.maximizeWindow();">
+            <!-- <svg class="no-drag hide" id="titleBarButtonUnmaximize" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="document.getElementById('titleBarButtonMaximize').style.display = '';document.getElementById('titleBarButtonUnmaximize').style.display = 'none';window.operator.maximizeWindow();">
                 <path d="M9 9H3V7H7V3H9V9Z" fill="currentColor" />
                 <path d="M9 15H3V17H7V21H9V15Z" fill="currentColor" />
                 <path d="M21 15H15V21H17V17H21V15Z" fill="currentColor" />
@@ -50,7 +62,7 @@
             </svg> -->
 
             <!--关闭-->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="-webkit-app-region: no-drag;" onclick="window.operator.closeWindow();">
+            <svg class="no-drag" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="window.operator.closeWindow();">
                 <path
                     d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"
                     fill="currentColor" />
@@ -93,7 +105,7 @@
                 <path d="M16 12L10 16.3301V7.66987L16 12Z" fill="currentColor" />
             </svg>
             <!--暂停-->
-            <svg id="floatBottomBar-music-control-pause" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <svg class="hide" id="floatBottomBar-music-control-pause" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 9H11V15H9V9Z" fill="currentColor" />
                 <path d="M15 15H13V9H15V15Z" fill="currentColor" />
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -170,6 +182,22 @@
                     <circle cx="12" cy="5" r="1"></circle>
                     <circle cx="12" cy="19" r="1"></circle>
                 </svg>
+            </div>
+        </div>
+    </div>
+    <div id="mainContentsBox">
+        <div class="mainContentsBox-mainRecommendation-Container">
+            <div class="mainContentsBox-mainRecommendation-PictureContainer">
+                <div class="mainContentsBox-mainRecommendation-Picture"></div>
+            </div>
+            <div class="mainContentsBox-mainRecommendation-Text">
+                TITLE
+            </div>
+            <div class="mainContentsBox-mainRecommendation-PictureContainer">
+                <div class="mainContentsBox-mainRecommendation-Picture"></div>   
+            </div>
+            <div class="mainContentsBox-mainRecommendation-Text">
+                TITLE
             </div>
         </div>
     </div>
