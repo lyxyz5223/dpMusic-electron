@@ -44,6 +44,7 @@ svg:hover, button:hover {
     transition: all .3s;
 }
 
+
 /* 标题栏 */
 #titleBar {
     top: 0;
@@ -230,9 +231,45 @@ svg:hover, button:hover {
     cursor: pointer;
     transition: all .3s;
 }
+@keyframes swingAnimation {
+    from {
+        transform: scale3d(1, 1, 1)
+    }
+
+    10%,
+    20% {
+        transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg)
+    }
+
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg)
+    }
+
+    40%,
+    60%,
+    80% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg)
+    }
+
+    to {
+        transform: scale3d(1, 1, 1)
+    }
+}
 #leftMainMenu ul li:hover {
     background-color: #F0ECE9;
+    animation: swingAnimation .5s linear;
     transition: all .3s;
+}
+#leftMainMenu ul li:active {
+    background-color: #E0DAD9;
+    transition: all .3s;
+}
+#leftMainMenu ul li:active::after {
+    animation: swingAnimation .5s linear;
+    transition: .3s;
 }
 #leftMainMenu ul li.active {
     background-color: #EFE0DB;
@@ -312,6 +349,11 @@ svg:hover, button:hover {
     color: #EF896D;
     transition: all .3s;
 }
+#floatBottomBar-music-control #floatBottomBar-music-control-play:active {
+    width: 27px;
+    height: 27px;
+    transition: all .3s;
+}
 #floatBottomBar-music-control #floatBottomBar-music-control-prev, #floatBottomBar-music-control #floatBottomBar-music-control-next {
     width: 20px;
     height: 20px;
@@ -320,7 +362,11 @@ svg:hover, button:hover {
     cursor: pointer;
     transition: all .3s;
 }
-
+#floatBottomBar-music-control #floatBottomBar-music-control-prev:active, #floatBottomBar-music-control #floatBottomBar-music-control-next:active {
+    width: 27px;
+    height: 27px;
+    transition: all .3s;
+}
 #floatBottomBar-music-control #floatBottomBar-music-control-prev:hover, #floatBottomBar-music-control #floatBottomBar-music-control-next:hover {
     color: #EF896D;
     background-color: #E8E2DE;
@@ -371,6 +417,8 @@ svg:hover, button:hover {
 #floatBottomBar-music-progress #floatBottomBar-music-progressTime {
     color: rgba(166, 180, 171, 0.8);
     font-size: 0.7em;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #mainContentsBox {
@@ -396,19 +444,36 @@ svg:hover, button:hover {
 
 #mainContentsBox .mainContentsBox-mainRecommendation-Container {
     display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content: left;
+    align-items: center;
+    border-radius: var(--roundSize);
+    padding: 15px;
+    margin: 15px;
+    /* width: calc((100% - var(--leftMainMenuWidth)) / 2); */
+    width: 35%;
+    height: max-content;
+    background-color: #F9EBE6;
 }
 #mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-PictureContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #F8E1DB;
-    --mainContentsBox-mainRecommendation-picSize: 125px;
+    --mainContentsBox-mainRecommendation-picSize: 75px;
     width: var(--mainContentsBox-mainRecommendation-picSize);
     height: var(--mainContentsBox-mainRecommendation-picSize);
     border: none;
     border-radius: var(--roundSize);
     overflow: hidden;
     /* padding: 5px; */
+    padding: 1px;
+    transition: all .3s;
+}
+#mainContentsBox .mainContentsBox-mainRecommendation-Container:hover {
+    opacity: 0.9;
+    transform: scale(1.1);
     transition: all .3s;
 }
 #mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Picture:hover {
@@ -435,9 +500,24 @@ svg:hover, button:hover {
 
 #mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Text {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-left: 10px;
     -webkit-user-select: none;
     user-select: none;
 }
-
+#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Text .mainContentsBox-mainRecommendation-Title {
+    color: #634C39;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0;
+    padding: 2px;
+}
+#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Text .mainContentsBox-mainRecommendation-Detail {
+    color: #EF896D;
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0;
+    padding: 2px;
+}
