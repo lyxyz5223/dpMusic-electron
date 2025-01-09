@@ -3,6 +3,8 @@
     --titleBarSearchBoxHeight: calc(var(--titleBarHeight) * 0.75);
     --titleBarSearchButtonSize: calc(var(--titleBarHeight)*0.7);
     --leftMainMenuWidth: 150px;
+    --floatBottomBarHeight: 60px;
+    --floatBottomBarMarginBottom: 15px;
     --roundSize: 15px;
 }
 * {
@@ -285,12 +287,12 @@ svg:hover, button:hover {
     border: none;
     border-radius: 10px;
     position: absolute;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    height: 60px;
-    padding-left: 15px;
-    padding-right: 15px;
+    bottom: var(--floatBottomBarMarginBottom);
+    left: var(--floatBottomBarMarginBottom);
+    right: var(--floatBottomBarMarginBottom);
+    height: var(--floatBottomBarHeight);
+    padding-left: var(--floatBottomBarMarginBottom);
+    padding-right: var(--floatBottomBarMarginBottom);
     z-index: 9999;
 }
 
@@ -428,6 +430,7 @@ svg:hover, button:hover {
     justify-content: center;
     position: relative;
     background-color: #FAF8F7;
+    /* background-color: aquamarine; */
     padding: 0px;
     padding-left: 5px;
     padding-top: 5px;
@@ -435,6 +438,7 @@ svg:hover, button:hover {
     margin-top: var(--topMainMenuHeight);
     /* width: calc(100% - var(--leftMainMenuWidth)); */
     /* height: 100%; */
+    height: calc(100% - var(--titleBarHeight) - 6px);
     left: 0;
     top: 0;
     bottom: 0;
@@ -460,6 +464,7 @@ svg:hover, button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background-color: #F8E1DB;
     --mainContentsBox-mainRecommendation-picSize: 75px;
     width: var(--mainContentsBox-mainRecommendation-picSize);
@@ -471,22 +476,30 @@ svg:hover, button:hover {
     padding: 1px;
     transition: all .3s;
 }
+
 #mainContentsBox .mainContentsBox-mainRecommendation-Container:hover {
     opacity: 0.9;
     transform: scale(1.1);
     transition: all .3s;
 }
-#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Picture:hover {
+
+
+
+#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-PictureContainer .mainContentsBox-mainRecommendation-Picture:hover {
     opacity: 0.5;
     transform: scale(1.2);
     transition: all .3s;
 }
-#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Picture {
+#mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-PictureContainer .mainContentsBox-mainRecommendation-Picture {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url("http://p3.music.126.net/lxTiuxCCexEZolVZCWnaRQ==/109951168018764622.jpg");
-    display: block;
+    /* background-image: url("http://p3.music.126.net/lxTiuxCCexEZolVZCWnaRQ==/109951168018764622.jpg"); */
+    background-color: #E8E8E8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #EF896D;
     top: 0;
     bottom: 0;
     left: 0;
@@ -496,6 +509,8 @@ svg:hover, button:hover {
     border: none;
     border-radius: var(--roundSize);
     overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Text {
@@ -509,7 +524,7 @@ svg:hover, button:hover {
 }
 #mainContentsBox .mainContentsBox-mainRecommendation-Container .mainContentsBox-mainRecommendation-Text .mainContentsBox-mainRecommendation-Title {
     color: #634C39;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: bold;
     margin: 0;
     padding: 2px;
@@ -520,4 +535,129 @@ svg:hover, button:hover {
     font-weight: normal;
     margin: 0;
     padding: 2px;
+}
+
+#mainContentsBox .songs-list-header {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #F9EBE6;
+    border-radius: var(--roundSize);
+    left: 0;
+    right: 0;
+    top: 0;
+}
+#mainContentsBox .songs-list-header .songs-list-header-child {
+    display: inline-flex;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    margin-right: auto;
+    margin-left: 0;
+    /* background-color: #959595; */
+    font-size: small;
+}
+#mainContentsBox .songs-list-header .songs-list-header-child:nth-child(1) {
+    width: 1ch;
+    /* height: 1.5em; */
+    justify-content: start;
+    margin-right: 15px;
+}
+#mainContentsBox .songs-list-header .songs-list-header-child:not(:nth-child(1)) {
+    /* width: calc(25% - 1.5em); */
+    /* height: 1.5em; */
+}
+#mainContentsBox .songs-list {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    margin: 10px;
+    margin-top: calc(25px + 2em);
+    margin-bottom: calc(var(--floatBottomBarHeight) + var(--floatBottomBarMarginBottom) * 2);
+    /* width: calc(100%); */
+    overflow: auto;
+    border: none;
+    border-radius: var(--roundSize);
+    background-color: #FFFFFF;
+    font-size: 0.9em;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    transition: all .3s;
+}
+::-webkit-scrollbar-track-piece {
+    background-color: #FFFFFF00;
+}
+::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    border-color: transparent;
+    border-width: 2px;
+    border-style: solid;
+    background-color: #EF896D55;
+    border-radius: 100px;
+    transition: all .3s;
+}
+::-webkit-scrollbar-thumb:hover {
+    border-color: #EF896DBB;
+    background-color: #EF896DBB;
+    transition: all .3s;
+}
+
+#mainContentsBox ol {
+    background-color: #FFFFFF00;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    left: 0;
+    right: 0;
+    margin: 10px;
+    padding: 0;
+    counter-reset: listCounter 0;
+}
+#mainContentsBox ol li {
+    list-style: none;
+    margin: 0;
+    padding: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    /* padding-left: 30px; */
+    border-radius: var(--roundSize);
+    /* font-size: small; */
+}
+#mainContentsBox ol li:hover {
+    background-color: #FEF9F7;
+}
+#mainContentsBox ol li::before {
+    content: counter(listCounter)"";
+    color: #EF896D;
+    display: inline-flex;
+    justify-content: end;
+    align-items: center;
+    /* text-align: center; */
+    counter-increment: listCounter 1;
+    padding-right: 15px;
+    /* position: absolute; */
+    /* left: 15px; */
+    width: 0px;
+    padding-left: 0;
+    font-size: calc(100% * 0.75);
 }
