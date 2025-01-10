@@ -76,8 +76,8 @@ ipcMain.handle('searchSongs', async (event, name) => {
         buttons: ['确定']
     })
     if (contents.code == -460) {
-        alert('网络拥挤，请稍后再试')
-        return
+        // alert('网络拥挤，请稍后再试')
+        return contents
     }
     await dialog.showMessageBox({
         title: '搜索结果',
@@ -87,15 +87,16 @@ ipcMain.handle('searchSongs', async (event, name) => {
     })
 
     // await dialog.showMessageBox({title: 'test',message: name, type: 'info',detail: JSON.stringify(contents),buttons: ['确定']})
-    let text = ''
-    for (var i = 0; i < contents.result.songs.length; i++) {
-        text += `title:${contents.result.songs[i].name}\n`
-        text += `   artist:${contents.result.songs[i].ar[0].name}`
-        for (var j = 1; j < contents.result.songs[i].ar.length; j++) {
-            text += `,${contents.result.songs[i].ar[j].name}`
-        }
-        text += '\n'
-    }
+
+    // let text = ''
+    // for (var i = 0; i < contents.result.songs.length; i++) {
+    //     text += `title:${contents.result.songs[i].name}\n`
+    //     text += `   artist:${contents.result.songs[i].ar[0].name}`
+    //     for (var j = 1; j < contents.result.songs[i].ar.length; j++) {
+    //         text += `,${contents.result.songs[i].ar[j].name}`
+    //     }
+    //     text += '\n'
+    // }
     // await dialog.showMessageBox({
     //     title: 'test',
     //     message: name,

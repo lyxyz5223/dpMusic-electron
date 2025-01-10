@@ -207,7 +207,7 @@
     </div>
     <iframe id="tempIFrame" style="position: absolute;border: 0;display: block;top:0;bottom: 0;left: 0;left: calc(var(--leftMainMenuWidth) + 10px);right: 0;top: calc(var(--titleBarHeight) + 1px);width: calc(100% - var(--leftMainMenuWidth) - 10px);height: calc(100% - var(--titleBarHeight) - 1px);z-index: -5;"></iframe>
     <div id="mainContentsBox">
-        <div id="mainPage">
+        <div id="mainPage" style="display: none;">
             <div class="mainContentsBox-mainRecommendation-Container" onclick="document.getElementById('tempIFrame').src = 'https://www.gequbao.com/';document.getElementById('tempIFrame').style.zIndex = 0;">
                 <div class="mainContentsBox-mainRecommendation-PictureContainer">
                     <div class="mainContentsBox-mainRecommendation-Picture">
@@ -237,7 +237,7 @@
                 </div>
             </div>
         </div>
-        <div id="songs-list-box" style="display: none;">
+        <div id="songs-list-box">
             <div class="songs-list-header">
                 <div class="songs-list-header-child">#</div>
                 <div class="songs-list-header-child">歌曲名</div>
